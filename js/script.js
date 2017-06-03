@@ -1,17 +1,33 @@
 // event listener to respond to "Show another quote" button clicks
 // when user clicks anywhere on the button, the "printQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+var quotesCopy = [];
 
-//get random quote from quotes.js and return quote object
+//get random quote from quotes.js, removes quote from array (to prevent duplicate quote showing), return quote object
 function getRandomQuote() {
     //returns random # between 0 and the length of the quotes array
     var rand = Math.floor(Math.random() * quotes.length); 
-    return quotes[rand];
+    
+    //copies the quote to a variable, that way I can remove the quote from the array before returning the quote
+    var quoteReturn = quotes[rand];
+    
+    //copies quote to 2nd array and removes quote from quote array
+    quotesCopy.push(quotes[rand]);
+    quotes.splice(rand, 1);
+    
+    //if quote array is empty, copy 2nd array to quotes array and empties 2nd array
+    if (quotes.length === 0){
+        quotes = quotesCopy.slice();
+        quotesCopy = [];
+    }
+    
+    return quoteReturn;
 }
 
 //print the quote from getRandomQuote()
 function printQuote() {
     var quote = getRandomQuote();
+    console.log(quote);
     document.getElementById('quote-box').innerHTML = format(quote);
 }
 
