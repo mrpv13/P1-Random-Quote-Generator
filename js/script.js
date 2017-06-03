@@ -27,12 +27,6 @@ function getRandomQuote() {
 //print the quote from getRandomQuote()
 function printQuote() {
     var quote = getRandomQuote();
-    console.log(quote);
-    document.getElementById('quote-box').innerHTML = format(quote);
-}
-
-//formats the quote to the correct html tags
-function format(quote) {
     var message = "";
     
     message += "<p class=\"quote\">" + quote.quote + "</p>";
@@ -47,5 +41,7 @@ function format(quote) {
     }
     
     message += "</p>";
-    return message;
+    
+    console.log(quote);
+    document.getElementById('quote-box').innerHTML = message;
 }
