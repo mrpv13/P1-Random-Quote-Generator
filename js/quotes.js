@@ -48,5 +48,3 @@ var quotes = [
      year: 2009
     }
 ];
-
-var quotesCopy = [];

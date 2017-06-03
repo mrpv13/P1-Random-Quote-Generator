@@ -26,6 +26,7 @@ function getRandomQuote() {
 
 //print the quote from getRandomQuote()
 function printQuote() {
+    changeColor();
     var quote = getRandomQuote();
     var message = "";
     
@@ -44,4 +45,10 @@ function printQuote() {
     
     console.log(quote);
     document.getElementById('quote-box').innerHTML = message;
+}
+
+function changeColor(){
+    var color = "rgb(" + Math.floor(Math.random() * 255) + ", " + Math.floor(Math.random() * 255) + ", " + Math.floor(Math.random() * 255) + ")";
+    document.getElementById('body').style.backgroundColor = color;
+    document.getElementById('loadQuote').style.backgroundColor = color;
 }
