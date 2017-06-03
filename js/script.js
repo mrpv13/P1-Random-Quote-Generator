@@ -2,6 +2,7 @@
 // when user clicks anywhere on the button, the "printQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 var quotesCopy = [];
+var timeoutID;
 
 //get random quote from quotes.js, removes quote from array (to prevent duplicate quote showing), return quote object
 function getRandomQuote() {
@@ -26,6 +27,7 @@ function getRandomQuote() {
 
 //print the quote from getRandomQuote()
 function printQuote() {
+    window.clearTimeout(timeoutID);
     changeColor();
     var quote = getRandomQuote();
     var message = "";
@@ -45,6 +47,7 @@ function printQuote() {
     
     console.log(quote);
     document.getElementById('quote-box').innerHTML = message;
+    timeoutID = window.setTimeout(printQuote, 30000);
 }
 
 function changeColor(){
@@ -52,3 +55,5 @@ function changeColor(){
     document.getElementById('body').style.backgroundColor = color;
     document.getElementById('loadQuote').style.backgroundColor = color;
 }
+
+timeoutID = window.setTimeout(printQuote, 30000);
